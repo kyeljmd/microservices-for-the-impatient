@@ -52,7 +52,6 @@ mvn spring-boot:run
 
 
 
-
 ### Friflow-api
 
 The Friflow-api is an existing system we will be plugging in. It contains the some of the core business logic of our application. The Friflow-api is a ticketing service/a small workflow management system that issues various types tickets such as quotation tickets which contains product inquiries,pricing,materials used.
