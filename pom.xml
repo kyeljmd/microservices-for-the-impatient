@@ -13,5 +13,6 @@
         <module>friflow-ticketing-api</module>
         <module>friflow-api-gateway</module>
         <module>friflow-service-registry</module>
+        <module>friflow-cmm-api</module>
     </modules>
 </project>

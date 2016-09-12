@@ -1,4 +1,4 @@
-package org.brightworks.friflow.ticketing.imm.domain;
+package org.brightworks.cmm.api.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;

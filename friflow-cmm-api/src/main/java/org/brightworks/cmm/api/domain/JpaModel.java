@@ -1,4 +1,4 @@
-package org.brightworks.friflow.ticketing.imm.domain;
+package org.brightworks.cmm.api.domain;
 
 import javax.persistence.*;
 
@@ -17,10 +17,10 @@ public class JpaModel {
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE, generator = GENERATOR_NAME)
     @TableGenerator(name = GENERATOR_NAME, table = TABLE_NAME, initialValue = ID_INITIAL_VALUE)
-    private Long id;
+    protected Long id;
 
     @Version
-    private long version;
+    protected long version;
 
     public long getVersion() {
         return version;
