@@ -1,7 +1,7 @@
-package org.brightworks.friflow.ticketing.imm.controller;
+package org.brightworks.friflow.imm.controller;
 
-import org.brightworks.friflow.ticketing.imm.dto.UserAccountDTO;
-import org.brightworks.friflow.ticketing.imm.service.UserService;
+import org.brightworks.friflow.imm.dto.UserAccountDTO;
+import org.brightworks.friflow.imm.service.UserService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;

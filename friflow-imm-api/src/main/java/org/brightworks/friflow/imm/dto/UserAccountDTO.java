@@ -1,7 +1,7 @@
-package org.brightworks.friflow.ticketing.imm.dto;
+package org.brightworks.friflow.imm.dto;
 
 
-import org.brightworks.friflow.ticketing.imm.domain.Role;
+import org.brightworks.friflow.imm.domain.Role;
 
 import java.util.List;
 

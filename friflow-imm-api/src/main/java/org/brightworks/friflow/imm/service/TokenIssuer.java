@@ -1,4 +1,4 @@
-package org.brightworks.friflow.ticketing.imm.service;
+package org.brightworks.friflow.imm.service;
 
 /**
  * Created by kyel on 8/14/2016.

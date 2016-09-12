@@ -1,10 +1,10 @@
-package org.brightworks.friflow.ticketing.imm.service;
+package org.brightworks.friflow.imm.service;
 
 
-import org.brightworks.friflow.ticketing.imm.domain.Role;
-import org.brightworks.friflow.ticketing.imm.domain.UserAccount;
-import org.brightworks.friflow.ticketing.imm.dto.UserAccountDTO;
-import org.brightworks.friflow.ticketing.imm.repo.UserAccountRepo;
+import org.brightworks.friflow.imm.domain.Role;
+import org.brightworks.friflow.imm.domain.UserAccount;
+import org.brightworks.friflow.imm.dto.UserAccountDTO;
+import org.brightworks.friflow.imm.repo.UserAccountRepo;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Service;
 

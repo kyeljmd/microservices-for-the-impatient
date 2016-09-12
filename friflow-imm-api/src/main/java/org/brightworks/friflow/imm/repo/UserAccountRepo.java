@@ -1,6 +1,6 @@
-package org.brightworks.friflow.ticketing.imm.repo;
+package org.brightworks.friflow.imm.repo;
 
-import org.brightworks.friflow.ticketing.imm.domain.UserAccount;
+import org.brightworks.friflow.imm.domain.UserAccount;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 public interface UserAccountRepo extends PagingAndSortingRepository<UserAccount,Long>{

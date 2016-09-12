@@ -1,18 +1,25 @@
-package org.brightworks.friflow.ticketing.imm.dto;
+package org.brightworks.friflow.imm.domain;
+
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
 
 /**
- * Created by kyel on 1/3/2016.
+ * author by kyel
  */
-public class NameDTO {
+@Embeddable
+public class Name {
 
+    @Column(name = "given_name")
     private String givenName;
 
+    @Column(name = "family_name")
     private String familyName;
 
+    @Column(name = "middle_name")
     private String middleName;
 
     public String getGivenName() {
-        return givenName;
+        return givenName != null ? givenName : "";
     }
 
     public void setGivenName(String givenName) {
@@ -20,7 +27,7 @@ public class NameDTO {
     }
 
     public String getFamilyName() {
-        return familyName;
+        return familyName != null ? familyName : "";
     }
 
     public void setFamilyName(String familyName) {
@@ -28,7 +35,7 @@ public class NameDTO {
     }
 
     public String getMiddleName() {
-        return middleName;
+        return middleName != null ? middleName : "";
     }
 
     public void setMiddleName(String middleName) {

@@ -1,4 +1,4 @@
-package org.brightworks.friflow.ticketing.imm.domain;
+package org.brightworks.friflow.imm.domain;
 
 
 public enum Role {

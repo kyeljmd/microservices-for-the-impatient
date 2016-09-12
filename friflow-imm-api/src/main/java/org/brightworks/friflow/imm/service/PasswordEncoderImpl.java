@@ -1,4 +1,4 @@
-package org.brightworks.friflow.ticketing.imm.service;
+package org.brightworks.friflow.imm.service;
 
 import org.jasypt.exceptions.EncryptionOperationNotPossibleException;
 import org.jasypt.util.password.StrongPasswordEncryptor;

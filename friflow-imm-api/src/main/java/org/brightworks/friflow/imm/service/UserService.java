@@ -1,6 +1,6 @@
-package org.brightworks.friflow.ticketing.imm.service;
+package org.brightworks.friflow.imm.service;
 
-import org.brightworks.friflow.ticketing.imm.dto.UserAccountDTO;
+import org.brightworks.friflow.imm.dto.UserAccountDTO;
 
 import java.util.Optional;
 

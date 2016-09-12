@@ -1,4 +1,4 @@
-package org.brightworks.friflow.ticketing;
+package org.brightworks.friflow.imm;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
