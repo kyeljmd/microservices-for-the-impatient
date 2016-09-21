@@ -2,7 +2,6 @@ package org.brightworks.friflow.ticketing.mapper.impl;
 
 import ma.glasnost.orika.CustomMapper;
 import ma.glasnost.orika.MappingContext;
-import org.brightworks.friflow.ticketing.domain.user.CompanyName;
 import org.brightworks.friflow.ticketing.domain.dto.AttachmentDTO;
 import org.brightworks.friflow.ticketing.domain.dto.QuotationDTO;
 import org.brightworks.friflow.ticketing.domain.process.ProcessStatus;
@@ -27,12 +26,12 @@ public class QuotationMapper  extends CustomMapper<Quotation, QuotationDTO> {
     private CompanyNameRepo companyNameRepo;
 
     public void mapAtoB(Quotation quotation, QuotationDTO quotationDTO, MappingContext context) {
-        quotationDTO.setCustomerName(quotation.getClientName().getName());
+        quotationDTO.setClientId(quotation.getClientId());
         quotationDTO.setPrice(quotation.getPrice().doubleValue());
         quotationDTO.setTargetDate(DateUtil.formatDate(quotation.getTargetDate()));
         quotationDTO.setStatus(quotation.getProcessStatus().toString());
         quotationDTO.setCreatedDateTime(DateUtil.formatDateTime(quotation.getDateTimeCreated(), "MM-dd-yyyy hh:mm aa"));
-        List<AttachmentDTO> attachmentMetaDatas = new ArrayList<>();
+        List<AttachmentDTO> attachmentMetaDatas = new ArrayList<AttachmentDTO>();
         for(AttachmentMetaData attachment: quotation.getAttachments()) {
             if (!attachment.isDeleted()) {
                 AttachmentDTO dto = new AttachmentDTO();
@@ -52,22 +51,11 @@ public class QuotationMapper  extends CustomMapper<Quotation, QuotationDTO> {
     }
 
     public void mapBtoA(QuotationDTO dto, Quotation quotation, MappingContext context) {
-        quotation.setCustomerName(dto.getCustomerName());
+        quotation.setClientId(dto.getClientId());
         quotation.setItemDescription(dto.getItemDescription());
         quotation.setPrice(new BigDecimal(dto.getPrice() != null ? dto.getPrice() : 0));
         quotation.setTargetDate(DateUtil.formatDate(dto.getTargetDate()));
         quotation.setProcessStatus(ProcessStatus.valueOf(dto.getStatus()));
-        setQuotationClientName(dto, quotation);
-    }
-
-    private void setQuotationClientName(QuotationDTO dto, Quotation quotation) {
-        if(doesCompanyNameExist(dto.getCustomerName())){
-            quotation.setClientName(companyNameRepo.findByName(dto.getCustomerName().toUpperCase()));
-        }else{
-            CompanyName companyName = new CompanyName();
-            companyName.setName(dto.getCustomerName().toUpperCase());
-            quotation.setClientName(companyNameRepo.save(companyName));
-        }
     }
 
     private boolean doesCompanyNameExist(String companyName){

@@ -30,11 +30,11 @@ public class ProductionRepoImpl implements ProductionRepoCustom {
     @Autowired
     private OrikaBeanMapper mapper;
 
-    @Override
+
     public Page<ProductionDTO> search(String jobOrderNumber,
                                       String purchaseNumber,
                                       String description,
-                                      String clientName,
+                                      Long clientId,
                                       LocalDate startDate,
                                       LocalDate endDate,
                                       ProcessStatus status,
@@ -43,18 +43,18 @@ public class ProductionRepoImpl implements ProductionRepoCustom {
         QProduction q = QProduction.production;
         BooleanExpression expression = null;
         BooleanBuilder builder = expressionBuilder(jobOrderNumber,
-                purchaseNumber, description, clientName,startDate, endDate,status, q);
+                purchaseNumber, description, clientId,startDate, endDate,status, q);
         List<Production> results = queryBuilder(pageable, query, q, builder);
-        List<ProductionDTO> res = new ArrayList<>();
+        List<ProductionDTO> res = new ArrayList<ProductionDTO>();
         for(Production production : results){
             ProductionDTO dto = mapper.map(production, ProductionDTO.class);
             res.add(dto);
         }
 
         if(pageable != null){
-            return new PageImpl<>(res,pageable,query.count());
+            return new PageImpl<ProductionDTO>(res,pageable,query.count());
         }else{
-            return new PageImpl<>(res);
+            return new PageImpl<ProductionDTO>(res);
         }
     }
 
@@ -80,7 +80,7 @@ public class ProductionRepoImpl implements ProductionRepoCustom {
 
     private BooleanBuilder expressionBuilder(String jobOrderNumber,
                                              String purchaseNumber,String description,
-                                             String clientName,
+                                             Long clientId,
                                              LocalDate startDate,
                                              LocalDate endDate,
                                              ProcessStatus status,
@@ -100,8 +100,8 @@ public class ProductionRepoImpl implements ProductionRepoCustom {
             booleanBuilder.or(production.description.contains(description));
         }
 
-        if(clientName !=null && !clientName.isEmpty()){
-            booleanBuilder.or(production.clientName.name.contains(clientName));
+        if(clientId !=null ){
+            booleanBuilder.or(production.clientId.eq(clientId));
         }
 
         //Append date if start date and end date is not equal to null

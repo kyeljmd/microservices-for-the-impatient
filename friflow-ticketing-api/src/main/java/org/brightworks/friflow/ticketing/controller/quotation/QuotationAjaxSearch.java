@@ -30,7 +30,7 @@ public class QuotationAjaxSearch {
                                                              @RequestParam (required=false) int iSortCol_0,
                                                              @RequestParam (required=false)String sSortDir_0,
                                                              @RequestParam (required=false) String ticketNumber,
-                                                             @RequestParam (required=false) String clientName,
+                                                             @RequestParam (required=false) Long clientId,
                                                              @RequestParam (required=false) String description,
                                                              @RequestParam (required=false) String startDate,
                                                              @RequestParam (required=false) String endDate,
@@ -40,7 +40,7 @@ public class QuotationAjaxSearch {
         Page<QuotationDTO> quotationDTOs = quotationService
                 .search(ticketNumber,
                         description,
-                        clientName,
+                        clientId,
                         !startDate.isEmpty() ?  LocalDate.parse(startDate, DateTimeFormat.forPattern("MM-dd-yyyy")) : null,
                         !endDate.isEmpty() ?  LocalDate.parse(endDate, DateTimeFormat.forPattern("MM-dd-yyyy")) : null,
                         status,

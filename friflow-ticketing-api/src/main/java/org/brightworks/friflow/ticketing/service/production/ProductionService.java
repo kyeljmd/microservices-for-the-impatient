@@ -26,7 +26,7 @@ public interface ProductionService {
     Page<ProductionDTO> search(String jobOrderNumber,
                                String purchaseNumber,
                                String description,
-                               String clientName,
+                               Long clientId,
                                LocalDate startDate,
                                LocalDate endDate,
                                ProcessStatus status,

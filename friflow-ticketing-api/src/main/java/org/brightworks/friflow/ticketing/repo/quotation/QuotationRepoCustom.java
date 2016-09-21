@@ -13,7 +13,7 @@ public interface QuotationRepoCustom {
 
     Page<QuotationDTO> search(String ticketNumber,
                               String description,
-                              String clientName,
+                              Long clientId,
                               LocalDate startDate,
                               LocalDate endDate,
                               ProcessStatus status,

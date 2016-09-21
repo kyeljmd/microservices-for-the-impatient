@@ -11,7 +11,7 @@ public class QuotationDTO extends BaseProcessDTO{
 
     private String itemDescription;
 
-    private String customerName;
+    private Long clientId;
 
     private Double price;
 
@@ -21,11 +21,11 @@ public class QuotationDTO extends BaseProcessDTO{
     }
 
     public QuotationDTO(Long id, String createdDateTime, String status, String ticketNumber,
-                        String targetDate, String itemDescription, String customerName, Double price) {
+                        String targetDate, String itemDescription, Long clientId, Double price) {
         super(id,createdDateTime,status,ticketNumber);
         this.targetDate = targetDate;
         this.itemDescription = itemDescription;
-        this.customerName = customerName;
+        this.clientId = clientId;
         this.price = price;
     }
 
@@ -45,12 +45,13 @@ public class QuotationDTO extends BaseProcessDTO{
         this.itemDescription = itemDescription;
     }
 
-    public String getCustomerName() {
-        return customerName;
+
+    public Long getClientId() {
+        return clientId;
     }
 
-    public void setCustomerName(String customerName) {
-        this.customerName = customerName;
+    public void setClientId(Long clientId) {
+        this.clientId = clientId;
     }
 
     public Double getPrice() {

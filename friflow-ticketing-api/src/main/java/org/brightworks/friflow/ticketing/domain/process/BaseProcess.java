@@ -1,6 +1,5 @@
 package org.brightworks.friflow.ticketing.domain.process;
 
-import org.brightworks.friflow.ticketing.domain.user.CompanyName;
 import org.brightworks.friflow.ticketing.domain.JpaModel;
 import org.brightworks.friflow.ticketing.listener.TicketNumberGeneratorListener;
 import org.hibernate.annotations.Type;
@@ -31,8 +30,8 @@ public abstract class BaseProcess  extends JpaModel {
     @Column(name = "ticket_number")
     private String ticketNumber;
 
-    @OneToOne
-    private CompanyName clientName;
+    @Column(name = "client_Id")
+    private Long clientId;
 
     @Column(name = "deleted",nullable = false, columnDefinition = "BOOLEAN DEFAULT false")
     private Boolean deleted = false;
@@ -61,12 +60,12 @@ public abstract class BaseProcess  extends JpaModel {
         this.ticketNumber = ticketNumber;
     }
 
-    public CompanyName getClientName() {
-        return clientName;
+    public Long getClientId() {
+        return clientId;
     }
 
-    public void setClientName(CompanyName clientName) {
-        this.clientName = clientName;
+    public void setClientId(Long clientId) {
+        this.clientId = clientId;
     }
 
     public LocalDate getTargetDate() {
@@ -91,7 +90,6 @@ public abstract class BaseProcess  extends JpaModel {
         return "BaseProcess{" +
                 "processStatus=" + processStatus +
                 ", ticketNumber='" + ticketNumber + '\'' +
-                ", clientName=" + clientName +
                 "} " + super.toString();
     }
 }

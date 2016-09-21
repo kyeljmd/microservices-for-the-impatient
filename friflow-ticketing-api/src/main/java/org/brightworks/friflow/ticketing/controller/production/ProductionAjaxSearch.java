@@ -32,7 +32,7 @@ public class ProductionAjaxSearch {
                                                               @RequestParam (required=false) String ticketNumber,
                                                               @RequestParam (required=false) String jobOrderNumber,
                                                               @RequestParam (required=false) String purchaseNumber,
-                                                              @RequestParam (required=false) String clientName,
+                                                              @RequestParam (required=false) Long  clientId,
                                                               @RequestParam (required=false) String description,
                                                               @RequestParam (required=false) String startDate,
                                                               @RequestParam (required=false) String endDate,
@@ -40,7 +40,7 @@ public class ProductionAjaxSearch {
 
         int page = (int) Math.ceil(iDisplayStart/iDisplayLength);
         Page<ProductionDTO> quotationDTOs = productionService
-                .search(jobOrderNumber,purchaseNumber,description,clientName,
+                .search(jobOrderNumber,purchaseNumber,description,clientId,
                         !startDate.isEmpty() ?  LocalDate.parse(startDate, DateTimeFormat.forPattern("MM-dd-yyyy")) : null,
                         !endDate.isEmpty() ?  LocalDate.parse(endDate, DateTimeFormat.forPattern("MM-dd-yyyy")) : null,
                         status,

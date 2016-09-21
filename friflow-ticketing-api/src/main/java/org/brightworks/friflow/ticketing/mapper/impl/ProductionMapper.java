@@ -2,7 +2,6 @@ package org.brightworks.friflow.ticketing.mapper.impl;
 
 import ma.glasnost.orika.CustomMapper;
 import ma.glasnost.orika.MappingContext;
-import org.brightworks.friflow.ticketing.domain.user.CompanyName;
 import org.brightworks.friflow.ticketing.domain.dto.ProductionDTO;
 import org.brightworks.friflow.ticketing.domain.process.ProcessStatus;
 import org.brightworks.friflow.ticketing.domain.process.production.Priority;
@@ -22,7 +21,7 @@ public class ProductionMapper extends CustomMapper<Production, ProductionDTO> {
     private CompanyNameRepo companyNameRepo;
 
     public void mapAtoB(Production production, ProductionDTO dto, MappingContext context) {
-        dto.setCustomerName(production.getClientName().getName());
+        dto.setClientId(production.getClientId());
         dto.setTargetDate(DateUtil.formatDate(production.getTargetDate()));
         dto.setDescription(production.getDescription());
         dto.setDateTimeCreated(DateUtil.formatDateTime(production.getDateTimeCreated(), "MM-dd-yyyy hh:mm aa"));
@@ -42,14 +41,6 @@ public class ProductionMapper extends CustomMapper<Production, ProductionDTO> {
     }
 
     public void mapBtoA(ProductionDTO dto, Production production, MappingContext context) {
-        if(doesCompanyNameExist(dto.getCustomerName())){
-            production.setClientName(companyNameRepo.findByName(dto.getCustomerName().toUpperCase()));
-        }else{
-            CompanyName companyName = new CompanyName();
-            companyName.setName(dto.getCustomerName().toUpperCase());
-            production.setClientName(companyNameRepo.save(companyName));
-        }
-
         Priority priority = Priority.valueOf(dto.getPriority());
         switch (priority) {
             case RUSH:

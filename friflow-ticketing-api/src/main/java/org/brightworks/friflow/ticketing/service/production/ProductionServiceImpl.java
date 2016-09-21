@@ -7,12 +7,12 @@ import org.brightworks.friflow.ticketing.domain.process.attachment.Attachment;
 import org.brightworks.friflow.ticketing.domain.process.attachment.AttachmentMetaData;
 import org.brightworks.friflow.ticketing.domain.process.production.Production;
 import org.brightworks.friflow.ticketing.domain.process.quotation.Quotation;
+import org.brightworks.friflow.ticketing.exceptions.FormDataIntegrityException;
 import org.brightworks.friflow.ticketing.mapper.OrikaBeanMapper;
 import org.brightworks.friflow.ticketing.repo.attachment.AttachmentMetaDataRepo;
 import org.brightworks.friflow.ticketing.repo.attachment.AttachmentRepo;
 import org.brightworks.friflow.ticketing.repo.production.ProductionRepo;
 import org.brightworks.friflow.ticketing.repo.quotation.QuotationRepo;
-import org.brightworks.friflow.ticketing.exceptions.FormDataIntegrityException;
 import org.joda.time.LocalDate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -119,16 +119,16 @@ public class ProductionServiceImpl implements ProductionService {
 
     @Override
     public Page<ProductionDTO> search(String jobOrderNumber,
-                                      String purchaseNumber,String description,String clientName,
+                                      String purchaseNumber,String description,Long clientId,
                                       LocalDate startDate, LocalDate endDate, ProcessStatus status,Pageable pageable) {
         LOG.info("Searching for Production tickets with ff parameters\n" +
                 "jobOrderNumber={}\n" +
                 "purchaseNumber={}\n" +
                 "description={}\n" +
-                "clientName={}",jobOrderNumber,purchaseNumber,description,clientName)
+                "clientName={}",jobOrderNumber,purchaseNumber,description,clientId)
         ;
         return productionRepo.search(jobOrderNumber,
-                 purchaseNumber,description,clientName,startDate,endDate,status,pageable);
+                 purchaseNumber,description,clientId,startDate,endDate,status,pageable);
     }
 
     private List<AttachmentMetaData> buildAttachments(List<MultipartFile> attachments) {

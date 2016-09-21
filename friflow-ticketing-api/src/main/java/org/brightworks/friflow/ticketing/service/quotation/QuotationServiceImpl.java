@@ -5,11 +5,11 @@ import org.brightworks.friflow.ticketing.domain.process.ProcessStatus;
 import org.brightworks.friflow.ticketing.domain.process.attachment.Attachment;
 import org.brightworks.friflow.ticketing.domain.process.attachment.AttachmentMetaData;
 import org.brightworks.friflow.ticketing.domain.process.quotation.Quotation;
+import org.brightworks.friflow.ticketing.exceptions.FormDataIntegrityException;
 import org.brightworks.friflow.ticketing.mapper.OrikaBeanMapper;
 import org.brightworks.friflow.ticketing.repo.attachment.AttachmentMetaDataRepo;
 import org.brightworks.friflow.ticketing.repo.attachment.AttachmentRepo;
 import org.brightworks.friflow.ticketing.repo.quotation.QuotationRepo;
-import org.brightworks.friflow.ticketing.exceptions.FormDataIntegrityException;
 import org.joda.time.LocalDate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -139,7 +139,7 @@ public class QuotationServiceImpl implements QuotationService {
     @Override
     public Page<QuotationDTO> search(String ticketNumber,
                                      String description,
-                                     String clientName,
+                                     Long clientId,
                                      LocalDate startDate,
                                      LocalDate endDate,
                                      ProcessStatus status,
@@ -152,14 +152,14 @@ public class QuotationServiceImpl implements QuotationService {
                         "pageNumber={}\n",
                 ticketNumber,
                 description,
-                clientName
+                clientId
                 );
 
         Page<QuotationDTO> quotationDTOs =
                 quotationRepo.search(
                         ticketNumber,
                         description,
-                        clientName,
+                        clientId,
                         startDate,
                         endDate,
                         status,

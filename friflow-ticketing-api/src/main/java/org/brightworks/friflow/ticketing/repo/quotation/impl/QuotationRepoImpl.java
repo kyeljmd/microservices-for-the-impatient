@@ -32,7 +32,7 @@ public class QuotationRepoImpl implements QuotationRepoCustom {
     @Override
     public Page<QuotationDTO> search(String ticketNumber,
                                      String description,
-                                     String clientName,
+                                     Long clientId,
                                      LocalDate startDate,
                                      LocalDate endDate,
                                      ProcessStatus status,
@@ -40,7 +40,7 @@ public class QuotationRepoImpl implements QuotationRepoCustom {
         JPAQuery query = new JPAQuery(em);
         QQuotation q = QQuotation.quotation;
         BooleanBuilder expression = null;
-        expression = expressionBuilder(ticketNumber, description, clientName, startDate, endDate,status, q);
+        expression = expressionBuilder(ticketNumber, description, clientId, startDate, endDate,status, q);
 
         List<Quotation> results = queryBuilder(pageable, query, q, expression);
         List<QuotationDTO> res = new ArrayList<>();
@@ -58,7 +58,7 @@ public class QuotationRepoImpl implements QuotationRepoCustom {
 
     private BooleanBuilder expressionBuilder(String ticketNumber,
                                              String description,
-                                             String clientName,
+                                             Long clientId,
                                              LocalDate startDate,
                                              LocalDate endDate,ProcessStatus status, QQuotation quotation) {
 
@@ -72,8 +72,8 @@ public class QuotationRepoImpl implements QuotationRepoCustom {
             booleanBuilder.or(quotation.itemDescription.contains(description));
         }
 
-        if(clientName !=null && !clientName.isEmpty()){
-            booleanBuilder.or(quotation.clientName.name.contains(clientName));
+        if(clientId !=null){
+            booleanBuilder.or(quotation.clientId.eq(clientId));
         }
 
         //Append date if start date and end date is not equal to null

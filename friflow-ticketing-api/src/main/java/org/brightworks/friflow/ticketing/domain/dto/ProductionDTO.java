@@ -19,7 +19,7 @@ public class ProductionDTO {
 
     private String priority;
 
-    private String customerName;
+    private Long clientId;
 
     private String description;
 
@@ -91,12 +91,12 @@ public class ProductionDTO {
         this.priority = priority;
     }
 
-    public String getCustomerName() {
-        return customerName;
+    public Long getClientId() {
+        return clientId;
     }
 
-    public void setCustomerName(String customerName) {
-        this.customerName = customerName;
+    public void setClientId(Long clientId) {
+        this.clientId = clientId;
     }
 
     public String getDescription() {
@@ -157,7 +157,6 @@ public class ProductionDTO {
                 ", purchaseNumber='" + purchaseNumber + '\'' +
                 ", processStatus='" + processStatus + '\'' +
                 ", priority='" + priority + '\'' +
-                ", customerName='" + customerName + '\'' +
                 ", description='" + description + '\'' +
                 ", dateTimeCreated='" + dateTimeCreated + '\'' +
                 ", targetDate='" + targetDate + '\'' +
