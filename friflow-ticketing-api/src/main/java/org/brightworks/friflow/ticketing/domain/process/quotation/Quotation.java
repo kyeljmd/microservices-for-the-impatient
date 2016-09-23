@@ -17,10 +17,6 @@ import java.util.List;
 @Table(name = "TXN_QUOTATION")
 public class Quotation extends BaseProcess {
 
-    @Deprecated
-    @Column(name = "CUSTOMER_NAME")
-    private String customerName;
-
     @Column(name = "DESCRIPTION")
     private String itemDescription;
 
@@ -29,14 +25,6 @@ public class Quotation extends BaseProcess {
 
     @OneToMany
     private List<AttachmentMetaData> attachments;
-
-    public String getCustomerName() {
-        return customerName;
-    }
-
-    public void setCustomerName(String customerName) {
-        this.customerName = customerName;
-    }
 
     public String getItemDescription() {
         return itemDescription;
